@@ -1,3 +1,56 @@
+<?php
+
+include "baza.class.php";
+include "sesija.class.php";
+
+const server = "127.0.0.1";
+const korisnik = "root";
+const lozinka = "s6K8yzPb";
+const baza = "webdip2022x007";
+
+if(isset($_GET['prijavi'])){
+    
+    $greska_krivi_unos="";
+
+    $greska_polje="";
+    $poruka_prijava = "";
+    $korime=$_GET['korisnicko_ime'];
+    $lozinka=$_GET['lozinka'];
+
+    foreach ($_GET as $key => $value) {
+        if (empty($value)) {
+            $poruka_prijava .= "Nije upisano " . $key . "<br>";
+            $greska_polje.="Nije prazno";
+        }
+    }
+
+    $upit="SELECT * FROM `korisnik` WHERE Korisnicko_ime='{$korime}'";
+    $rezultat=$baza->selectDB($upit);
+
+  
+
+    if(mysqli_num_rows($rezultat)>0){
+        
+        while($red=mysqli_fetch_assoc($rezultat)){
+            $korisnicko_ime=$red['Korisnicko_ime'];
+            $sifra=$red['Lozinka'];
+            $uloga=$red['Uloga'];
+        }
+    }
+    else{
+        $greska_polje.="Nije prazno";
+        $greska_krivi_unos.="Podaci za prijavu nisu ispravni";
+    }
+
+    if(empty($greska_polje)){
+        Sesija::kreirajSesiju();
+        Sesija::kreirajKorisnika($korisnicko_ime,$uloga);
+        echo $_SESSION['korisnik'];
+        echo $_SESSION['uloga'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +79,17 @@
     </div>
 
     <div id="loginForm" class="popup-form">
+    <?php
+        if (isset($poruka_prijava)) {
+            echo "$poruka_prijava";
+            echo "<br>";
+        }
+
+        if (isset($greska_krivi_unos)) {
+            echo "$greska_krivi_unos";
+            echo "<br>";
+        }
+        ?>
         <div class="form-container">
             <span class="close" onclick="closeLoginForm()">&times;</span>
             <h2>Prijava</h2>
@@ -34,7 +98,7 @@
                 <input type="text" id="username" name="username" required>
                 <label for="password">Šifra:</label>
                 <input type="password" id="password" name="password" required>
-                <button type="submit" class="login-button">Prijavi se</button>
+                <button type="submit" id="prijavi" class="login-button">Prijavi se</button>
             </form>
         </div>
     </div>
