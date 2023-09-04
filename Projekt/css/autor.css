@@ -1,0 +1,53 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.centered-content {
+    text-align: center;
+}
+
+.centered-content img {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 20px; 
+    border-radius: 8%;
+}
+
+.centered-content p {
+    font-size: 30px;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5px;
+}
+
+.email-link {
+    color: #007bff; /* Change the color to your desired color */
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: hover; /* Add underline on hover (optional) */
+}
+
+/* Style the footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
