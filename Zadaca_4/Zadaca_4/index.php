@@ -78,6 +78,7 @@ $putanja = dirname($_SERVER['REQUEST_URI']);
                 <p class="pocetniclanaktekst">
                     Audi je njemački proizvođač automobila sa sjedištem u Ingolstadtu. Od 1964., Audi je marka unutar Volkswagen grupe.August Horch (1868. – 1951.), je 1899. osnovao marku Horch i počeo s proizvodnjom automobila, ali je u uskoro izbačen iz svoje kompanije pa je 1909. godine osnovao novu. Međutim, više nije imao pravo na korištenje svog obiteljskog imena pa je svoje prezime Horch preveo na latinski jezik. Riječ audi je imperativ od audire (na hrvatskom čuti), što i znači „Čuj!“ ili na njemačkom „Horch!“.
                 </p>
+                <p> Auto je najajci </p>
             </div>
         </div>
     </div>
