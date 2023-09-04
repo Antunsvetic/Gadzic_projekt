@@ -27,11 +27,9 @@ if(isset($_GET['login-button'])){
             $greska_polje.="Nije prazno";
         }
     }
-
+    
     $upit="SELECT * FROM `korisnik` WHERE Korisnicko_ime='{$korime}'";
     $rezultat=$baza->selectDB($upit);
-
-  
 
     if(mysqli_num_rows($rezultat)>0){
         while($red=mysqli_fetch_assoc($rezultat)){
