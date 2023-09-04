@@ -8,6 +8,9 @@ const korisnik = "root";
 const lozinka = "s6K8yzPb";
 const baza = "webdip2022x007";
 
+$baza=new Baza();
+$baza->spojiDB();
+
 //prijava
 if(isset($_GET['login-button'])){
     
