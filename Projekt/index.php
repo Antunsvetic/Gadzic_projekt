@@ -3,14 +3,8 @@
 include "baza.class.php";
 include "sesija.class.php";
 
-const server = "127.0.0.1";
-const korisnik = "root";
-const lozinka = "s6K8yzPb";
-const baza = "webdip2022x007";
-
 $baza=new Baza();
 $baza->spojiDB();
-
 
 //prijava
 if(isset($_GET['login-button'])){
@@ -32,6 +26,7 @@ if(isset($_GET['login-button'])){
             $korisnicko_ime=$red['Korisnicko_ime'];
             $sifra=$red['Lozinka_Sha256'];
             $uloga=$red['Korisnicka_uloga'];
+            $id = $red['Korisnik_ID'];
         }
 
         if($nova_lozinka != $sifra) {
@@ -43,9 +38,14 @@ if(isset($_GET['login-button'])){
 
     if(empty($greska_polje) && empty($poruka_prijava)){
         Sesija::kreirajSesiju();
-        Sesija::kreirajKorisnika($korisnicko_ime,$uloga);
-        echo $_SESSION['korisnik'];
-        echo $_SESSION['uloga'];
+        Sesija::kreirajKorisnika($id, $korisnicko_ime, $uloga);
+        if($uloga == 0) {
+            header('Location: /Pages/admin.php');
+        } elseif ($uloga == 1) {
+            header('Location: /Pages/moderator.php');
+        } elseif ($uloga == 2) {
+            header('Location: /Pages/registrirani.php');
+        }
     }
 }
 //registracija 
@@ -162,7 +162,7 @@ if (isset($_POST['submit_btn'])) {
         <div class="buttons">
             <button class="login-button" onclick="openLoginForm()">Prijavi se</button>
             <button class="register-button" onclick="openRegistrationForm()">Registriraj se</button>
-            <button class="guest-button">Gost</button>
+            <button class="register-button" onclick="relocateGuest()">Gost</button>
         </div>
     </div>
 

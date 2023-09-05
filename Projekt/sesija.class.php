@@ -34,6 +34,7 @@ class Sesija {
     const ULOGA = "uloga"; // konstanta uloga
     const KOSARICA = "kosarica";
     const SESSION_NAME = "prijava_sesija";
+    CONST ID = "id";
 
     static function kreirajSesiju() {
          if (session_id() == "") {
@@ -42,10 +43,11 @@ class Sesija {
         }
     }
 
-    static function kreirajKorisnika($korisnik, $uloga = 4) { // prosljedujemo ulogu korisnika
+    static function kreirajKorisnika($id, $korisnik, $uloga = 2) { // prosljedujemo ulogu korisnika
         self::kreirajSesiju();
         $_SESSION[self::KORISNIK] = $korisnik;
         $_SESSION[self::ULOGA] = $uloga;
+        $_SESSION[self::ID] = $id;
     }
 
     static function kreirajKosaricu($kosarica) {
@@ -84,6 +86,6 @@ class Sesija {
             session_unset();
             session_destroy();
         }
+        header("Location: index.php");
     }
-
 }

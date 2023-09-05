@@ -23,7 +23,6 @@ class Baza {
             $this->veza->connect_error;
             $this->greska = $this->veza->connect_error;
         }
-        echo "USPJESNO SPOJEN NA BAZU";
         return $this->veza;
     }
 

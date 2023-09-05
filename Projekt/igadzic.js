@@ -31,3 +31,7 @@ function closeRegistrationForm() {
     var registrationForm = document.getElementById("registrationForm");
     registrationForm.style.display = "none";
 }
+
+function relocateGuest() {
+    document.location.href = "/Pages/neregistrirani.php";
+}
