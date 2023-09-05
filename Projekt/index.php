@@ -11,22 +11,17 @@ const baza = "webdip2022x007";
 $baza=new Baza();
 $baza->spojiDB();
 
+
 //prijava
 if(isset($_GET['login-button'])){
+
     
     $greska_krivi_unos="";
 
     $greska_polje="";
     $poruka_prijava = "";
-    $korime=$_GET['korisnicko_ime'];
-    $lozinka=$_GET['lozinka'];
-
-    foreach ($_GET as $key => $value) {
-        if (empty($value)) {
-            $poruka_prijava .= "Nije upisano " . $key . "<br>";
-            $greska_polje.="Nije prazno";
-        }
-    }
+    $korime=$_GET['username'];
+    $lozinka=$_GET['password'];
     
     $upit="SELECT * FROM `korisnik` WHERE Korisnicko_ime='{$korime}'";
     $rezultat=$baza->selectDB($upit);
@@ -35,7 +30,7 @@ if(isset($_GET['login-button'])){
         while($red=mysqli_fetch_assoc($rezultat)){
             $korisnicko_ime=$red['Korisnicko_ime'];
             $sifra=$red['Lozinka'];
-            $uloga=$red['Uloga'];
+            $uloga=$red['Korisnicka_uloga'];
         }
     }
     else{
@@ -51,7 +46,7 @@ if(isset($_GET['login-button'])){
     }
 }
 //registracija 
-if (isset($_POST['registriraj'])) {
+if (isset($_POST['submit_btn'])) {
 
     $greska_polje="";
     $poruka = "";
@@ -60,12 +55,12 @@ if (isset($_POST['registriraj'])) {
     $potvrda_lozinka_greska="";
     $email_postoji_greska="";
 
-    $ime = $_POST['ime'];
-    $prezime = $_POST['prezime'];
+    $ime = $_POST['firstName'];
+    $prezime = $_POST['lastName'];
     $email = $_POST['email'];
-    $korime = $_POST['korisnicko_ime'];
-    $lozinka = $_POST['lozinka'];
-    $potvrda_lozinka = $_POST['potvrda_lozinke'];
+    $korime = $_POST['newUsername'];
+    $lozinka = $_POST['newPassword'];
+    $potvrda_lozinka = $_POST['repPassword'];
 
     foreach ($_POST as $key => $value) {
         if (empty($value)) {
@@ -133,9 +128,9 @@ if (isset($_POST['registriraj'])) {
         $kriptirano=$lozinka.$sol;
         $nova_lozinka=sha1($kriptirano);
 
-        $upit="INSERT INTO `korisnik`(`Korisnik_ID`, `Ime`, `Prezime`, `Slika_Korisnika`, `Email`, `Korisnicko_ime`, 
-        `Lozinka`, `Potvrda_lozinkeSH`, `Uloga`) VALUES ('','{$ime_prezime}','{$datum_rodenja}','{$email}',
-        '{$korime}','{$lozinka}','{$nova_lozinka}',3)";
+        $upit="INSERT INTO `Korisnik`(`Ime`, `Prezime`, `Email`, `Korisnicko_ime`, 
+        `Lozinka`, `Lozinka_Sha256`, `Korisnicka_uloga`) VALUES ('{$ime}','{$prezime}','{$email}',
+        '{$korime}','{$lozinka}','{$nova_lozinka}', '2')";
         $rezultat=$baza->updateDB($upit);
     }
 }
@@ -163,7 +158,7 @@ if (isset($_POST['registriraj'])) {
     <div class="container">
         <div class="buttons">
             <button class="login-button" onclick="openLoginForm()">Prijavi se</button>
-            <button class="register-button" onclick="openRegistrationForm()">Registriaj se</button>
+            <button class="register-button" onclick="openRegistrationForm()">Registriraj se</button>
             <button class="guest-button">Gost</button>
         </div>
     </div>
@@ -183,58 +178,58 @@ if (isset($_POST['registriraj'])) {
         <div class="form-container">
             <span class="close" onclick="closeLoginForm()">&times;</span>
             <h2>Prijava</h2>
-            <form>
+            <form action="" method="get">
                 <label for="username">Korisničko ime:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Šifra:</label>
                 <input type="password" id="password" name="password" required>
-                <button type="submit" class="login-button">Prijavi se</button>
+                <button type="submit" class="login-button" name="login-button">Prijavi se</button>
             </form>
         </div>
     </div>
 
     <div id="registrationForm" class="popup-form">
-    <?php
-        if (isset($poruka)) {
-            echo "$poruka";
+        <?php
+            if (isset($poruka)) {
+                echo "$poruka";
+                echo "<br>";
+            }
+            if (isset($email_greska)) {
+                echo "$email_greska";
+                echo "<br>";
+            }
+            if (isset($lozinka_greska)) {
+                echo "$lozinka_greska";
+            }
             echo "<br>";
-        }
-        if (isset($email_greska)) {
-            echo "$email_greska";
+            if (isset($potvrda_lozinka_greska)) {
+                echo "$potvrda_lozinka_greska";
+            }
             echo "<br>";
-        }
-        if (isset($lozinka_greska)) {
-            echo "$lozinka_greska";
-        }
-        echo "<br>";
-        if (isset($potvrda_lozinka_greska)) {
-            echo "$potvrda_lozinka_greska";
-        }
-        echo "<br>";
-        if (isset($email_postoji_greska)) {
-            echo "$email_postoji_greska";
-        }
-        echo "<br>";
-    ?>
+            if (isset($email_postoji_greska)) {
+                echo "$email_postoji_greska";
+            }
+            echo "<br>";
+        ?>
         <div class="form-container">
             <span class="close" onclick="closeRegistrationForm()">&times;</span>
             <h2>Registracija</h2>
-            <form>
+            <form action="" method="post">
                 <label for="firstName">Ime:</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <input type="text" id="firstName" name="firstName">
                 <label for="lastName">Prezime:</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <input type="text" id="lastName" name="lastName" >
                 <label for="dateOfBirth">Datum rođenja:</label>
-                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" >
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" >
                 <label for="newUsername">Korisničko ime:</label>
-                <input type="text" id="newUsername" name="newUsername" required>
+                <input type="text" id="newUsername" name="newUsername" >
                 <label for="newPassword">Šifra:</label>
-                <input type="password" id="newPassword" name="newPassword" required>
+                <input type="password" id="newPassword" name="newPassword" >
                 <label for="repPassword">Ponovi šifru:</label>
-                <input type="password" id="repPassword" name="repPassword" required>
-                <button type="submit" class="register-button">Registracija</button>
+                <input type="password" id="repPassword" name="repPassword" >
+                <button type="submit" id="registriraj" name="submit_btn" value="registriraj" class="register-button">Registracija</button>
             </form>
         </div>
     </div>

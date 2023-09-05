@@ -4,8 +4,8 @@ class Baza {
 
     const server = "127.0.0.1";
     const korisnik = "root";
-    const lozinka = "s6K8yzPb";
-    const baza = "webdip2022x007";
+    const lozinka = "toor";
+    const baza = "WebDiP2022x007";
 
     private $veza = null;
     private $greska = '';
@@ -23,6 +23,7 @@ class Baza {
             $this->veza->connect_error;
             $this->greska = $this->veza->connect_error;
         }
+        echo "USPJESNO SPOJEN NA BAZU";
         return $this->veza;
     }
 
@@ -54,7 +55,7 @@ class Baza {
                 header("Location: $skripta");
             }
         }
-
+        
         return $rezultat;
     }
 
