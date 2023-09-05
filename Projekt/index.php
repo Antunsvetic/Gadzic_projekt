@@ -15,9 +15,6 @@ $baza->spojiDB();
 //prijava
 if(isset($_GET['login-button'])){
 
-    
-    $greska_krivi_unos="";
-
     $greska_polje="";
     $poruka_prijava = "";
     $korime=$_GET['username'];
@@ -26,19 +23,25 @@ if(isset($_GET['login-button'])){
     $upit="SELECT * FROM `korisnik` WHERE Korisnicko_ime='{$korime}'";
     $rezultat=$baza->selectDB($upit);
 
-    if(mysqli_num_rows($rezultat)>0){
+    if(mysqli_num_rows($rezultat)>0) {
+        $sol="sha256kript";
+        $kriptirano=$lozinka.$sol;
+        $nova_lozinka=sha1($kriptirano);
+
         while($red=mysqli_fetch_assoc($rezultat)){
             $korisnicko_ime=$red['Korisnicko_ime'];
-            $sifra=$red['Lozinka'];
+            $sifra=$red['Lozinka_Sha256'];
             $uloga=$red['Korisnicka_uloga'];
         }
-    }
-    else{
-        $greska_polje.="Nije prazno";
-        $greska_krivi_unos.="Podaci za prijavu nisu ispravni";
-    }
 
-    if(empty($greska_polje)){
+        if($nova_lozinka != $sifra) {
+            $poruka_prijava.="Lozinka za username '" . $korime . "' nije ispravna.";
+        }
+    } else {
+        $greska_polje="Ne postoji korisnik sa username '" . $korime . "'.";
+    } 
+
+    if(empty($greska_polje) && empty($poruka_prijava)){
         Sesija::kreirajSesiju();
         Sesija::kreirajKorisnika($korisnicko_ime,$uloga);
         echo $_SESSION['korisnik'];
@@ -170,8 +173,8 @@ if (isset($_POST['submit_btn'])) {
             echo "<br>";
         }
 
-        if (isset($greska_krivi_unos)) {
-            echo "$greska_krivi_unos";
+        if (isset($greska_polje)) {
+            echo "$greska_polje";
             echo "<br>";
         }
         ?>
