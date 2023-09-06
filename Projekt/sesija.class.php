@@ -1,12 +1,5 @@
  <?php
 
-if (isset($_GET["logout"]) && $_GET["logout"] === "true") {
-    obrisiSesiju();
-    // Redirect to the login page or another appropriate page after logout
-    header("Location: ../index.php");
-    exit();
-}
-
 class Sesija {
 
     const KORISNIK = "korisnik";

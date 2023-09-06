@@ -5,7 +5,7 @@
     $baza = new Baza();
     $baza->spojiDB();
     $res = $baza->selectDB("SELECT * FROM Poduzece");
-    $resModeratori = $baza->selectDB("SELECT * FROM Korisnik WHERE Korisnicka_uloga = 'moderator'");
+    $resModeratori = $baza->selectDB("SELECT * FROM Korisnik");
 
 ?>
 
@@ -33,7 +33,37 @@
     </nav>
 
     <div>
-         <button onclick="dodajPoduzece()">Kreiraj poduzece</button>
+         <button onclick="dodajPoduzece()">Uredi korisnika</button>
+    </div>
+
+    <div id="edit-korisnik-modal" class="popup-form">
+        <div class="form-container">
+            <span class="close" onclick="closeEditKorisnik()">&times;</span>
+            <h2>Registracija</h2>
+            <form id="edit-korisnik-form" action="" method="post">
+                <label for="ime">Ime:</label>
+                <input type="text" id="ime" name="ime">
+                <label for="prezime">Prezime:</label>
+                <input type="text" id="prezime" name="prezime" >
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" >
+                <label for="username">Korisnicko ime:</label>
+                <input type="text" id="username" name="username" >
+                <label for="uloga">Uloga:</label>
+                <select name="uloga">
+                    <option value="0">Admin</option>
+                    <option value="1">Moderator</option>
+                    <option value="2">Registriran</option>
+                    <option value="3">Neregistriran</option>
+                </select>
+                <label for="blokiran">Blokiran:</label>
+                <select name="blokiran">
+                    <option value="1">Da</option>
+                    <option value="0">Ne</option>
+                </select>
+                <button type="submit" id="registriraj" name="submit_btn" value="registriraj" class="register-button">Registracija</button>
+            </form>
+        </div>
     </div>
 
 
@@ -92,6 +122,42 @@
                         echo "<td>" . $row["Zaposlenih"] . "</td>";
                         echo "<td>" . $row["Moderatori"] . "</td>";
                         echo "<td><button onclick='editPoduzece($poduzece_id)'>Uredi</button></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='2'>Nema aktivnih poduzeća!</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <h2 style="color: white; background: blue;">Korisnici</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ime</th>
+                    <th>Opis</th>
+                    <th>Email</th>
+                    <th>Korisnicko ime</th>
+                    <th>Korisnicka uloga</th>
+                    <th>Blokiran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($res->num_rows > 0) {
+                    while ($row = $resModeratori->fetch_assoc()) {
+                        $modId = $row["Korisnik_ID"];
+                        echo "<tr>";
+                        echo "<td>" . $row["Korisnik_ID"] . "</td>";
+                        echo "<td>" . $row["Ime"] . "</td>";
+                        echo "<td>" . $row["Prezime"] . "</td>";
+                        echo "<td>" . $row["Email"] . "</td>";
+                        echo "<td>" . $row["Korisnicko_ime"] . "</td>";
+                        echo "<td>" . $row["Korisnicka_uloga"] . "</td>";
+                        echo "<td>" . $row["Blokiran"] . "</td>";
+                        echo "<td><button onclick='editKorisnik($modId)'>Uredi</button></td>";
                         echo "</tr>";
                     }
                 } else {

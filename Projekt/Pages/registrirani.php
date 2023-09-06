@@ -6,7 +6,6 @@
     $baza->spojiDB();
     $res = $baza->selectDB("SELECT * FROM Natjecaj");
     Sesija::dajKorisnika();
-    echo $_SESSION['id'];
     $korisnicko_ime = $_SESSION["korisnik"];
     $user_id = $_SESSION['id'];
     $user_natjecaj_id = $_SESSION['natjecaj_id'];
