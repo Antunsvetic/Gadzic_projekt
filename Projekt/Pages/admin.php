@@ -32,11 +32,6 @@
         </ul>
     </nav>
 
-    <div>
-         <button onclick="dodajPoduzece()">Kreiraj poduzece</button>
-    </div>
-
-
     <div id="poduzece-modal" class="popup-form">
     <?php
         if (isset($poruka_prijava)) {
@@ -57,7 +52,7 @@
                 <input type="text" id="naziv" name="naziv">
                 <label for="opis">Opis:</label>
                 <input type="text" id="opis" name="opis">
-                <label for="radno_vrijeme">Radno_vrijeme:</label>
+                <label for="radno_vrijeme">Radno vrijeme:</label>
                 <input type="text" id="radno_vrijeme" name="radno_vrijeme">
                 <label for="broj_zaposlenih">Broj zaposlenih:</label>
                 <input type="text" id="broj_zaposlenih" name="broj_zaposlenih">
@@ -68,38 +63,44 @@
         </div>
     </div>
 
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Naziv</th>
-                    <th>Opis</th>
-                    <th>Radno_vrijeme</th>
-                    <th>Broj zaposlenih</th>
-                    <th>Moderatori</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($res->num_rows > 0) {
-                    while ($row = $res->fetch_assoc()) {
-                        $poduzece_id = $row["Poduzece_ID"];
-                        echo "<tr>";
-                        echo "<td>" . $row["Poduzece_ID"] . "</td>";
-                        echo "<td>" . $row["Naziv"] . "</td>";
-                        echo "<td>" . $row["Opis"] . "</td>";
-                        echo "<td>" . $row["Radno_vrijeme"] . "</td>";
-                        echo "<td>" . $row["Zaposlenih"] . "</td>";
-                        echo "<td>" . $row["Moderatori"] . "</td>";
-                        echo "<td><button onclick='editPoduzece($poduzece_id)'>Uredi</button></td>";
-                        echo "</tr>";
+        <div class="container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Naziv</th>
+                        <th>Opis</th>
+                        <th>Radno vrijeme</th>
+                        <th>Broj zaposlenih</th>
+                        <th>Moderatori</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($res->num_rows > 0) {
+                        while ($row = $res->fetch_assoc()) {
+                            $poduzece_id = $row["Poduzece_ID"];
+                            echo "<tr>";
+                            echo "<td>" . $row["Poduzece_ID"] . "</td>";
+                            echo "<td>" . $row["Naziv"] . "</td>";
+                            echo "<td>" . $row["Opis"] . "</td>";
+                            echo "<td>" . $row["Radno_vrijeme"] . "</td>";
+                            echo "<td>" . $row["Zaposlenih"] . "</td>";
+                            echo "<td>" . $row["Moderatori"] . "</td>";
+                            echo "<td><button onclick='editPoduzece($poduzece_id)'>Uredi</button></td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='2'>Nema aktivnih poduzeća!</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='2'>Nema aktivnih poduzeća!</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+            <div class="buttons">
+            <button class="edit-button" onclick="dodajPoduzece()">Kreiraj poduzece</button>
+            </div>
+        </div>
     </div>
 
     <script src="../igadzic.js"></script>
