@@ -41,6 +41,7 @@
                     <th>Pocetak</th>
                     <th>Kraj</th>
                     <th>Kandidati</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,12 +50,15 @@
                     while ($row = $res->fetch_assoc()) {
                         $natjecaj_id = $row["Natjecaj_ID"];
                         $kandidati = $row["Kandidati"];
+                        $status = $row["Status"];
                         $econdedKandidati = json_encode($kandidati);
                         $encodedUsername = json_encode($korisnicko_ime);
                         $kandidatNaPopisu = (str_contains($kandidati, $korisnicko_ime) ? true : false);
 
                         if($kandidatNaPopisu) {
                             $poruka = "<td>Prijavljen</td>";
+                        } elseif (!$status) {
+                            $poruka = "<td>Natjecaj zatvoren!</td>";
                         } elseif (!$kandidatNaPopisu && $user_natjecaj_id) {
                             $poruka = "<td>Kandidat je vec prijavljen na drugi natjecaj.</td>";
                         } else {

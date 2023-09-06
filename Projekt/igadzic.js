@@ -69,7 +69,6 @@ function openEditNatjecaj(natjecaj_id) {
     natjecajForm.addEventListener("submit", function(e) {
         e.preventDefault();
         const values = e.target;
-        console.log("NATJECAJ ID", natjecaj_id)
         const naziv = values.elements['naziv'].value;
         const opis = values.elements['opis'].value;
         const kandidati = values.elements['kandidati'].value;
