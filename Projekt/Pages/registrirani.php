@@ -7,6 +7,7 @@
     $res = $baza->selectDB("SELECT * FROM Natjecaj");
     Sesija::dajKorisnika();
     echo $_SESSION['id'];
+    $user_id = $_SESSION['id'];
 
 ?>
 
@@ -33,6 +34,7 @@
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Naziv</th>
                     <th>Opis</th>
                     <th>Pocetak</th>
@@ -46,13 +48,15 @@
                 // Loop through the retrieved data and display it in the table
                 if ($res->num_rows > 0) {
                     while ($row = $res->fetch_assoc()) {
+                        $natjecaj_id = $row["Natjecaj_ID"];
                         echo "<tr>";
+                        echo "<td>" . $row["Natjecaj_ID"] . "</td>";
                         echo "<td>" . $row["Naziv_natjecaja"] . "</td>";
                         echo "<td>" . $row["Opis_natjecaja"] . "</td>";
                         echo "<td>" . $row["Pocetak_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kandidati"] . "</td>";
-                        echo "<td><button>PRIJAVI SE</button></td>";
+                        echo "<td><button onclick='triggerUpdate($user_id, $natjecaj_id)'>PRIJAVI SE</button></td>";
                         // Add more table cells for additional columns as needed
                         echo "</tr>";
                     }
@@ -63,6 +67,8 @@
             </tbody>
         </table>
     </div>
+
+    <script src="../igadzic.js"></script>
 </body>
 </html>
 
