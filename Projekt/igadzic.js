@@ -38,8 +38,6 @@ function relocateGuest() {
 
 
 function triggerUpdate(param1, param2, param3, param4) {
-
-    console.log("PARAMETRI", param1, param2, param3, param4);
     // Send an AJAX request to call the updateDatabase function
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "../prijava_natjecaja.php", true); // Create call_function.php to call the function
@@ -95,4 +93,42 @@ function openEditNatjecaj(natjecaj_id) {
 function closeEditNatjecaj() {
     var natjecajModal = document.getElementById("natjecaj-modal");
     natjecajModal.style.display = "none";
+}
+
+function closeZadatakModal() {
+    var natjecajModal = document.getElementById("zadatak-modal");
+    natjecajModal.style.display = "none";
+}
+
+function kreirajZadatak() {
+    var zadatakModal = document.getElementById("zadatak-modal");
+    zadatakModal.style.display = "block";
+
+
+    const zadatakForm = document.getElementById("zadatak-form");
+    zadatakForm.addEventListener("submit", function(e){
+        e.preventDefault();
+
+        const values = e.target;
+        const naziv = values.elements['naziv'].value;
+        const opis = values.elements['opis'].value;
+        const kandidati = values.elements['kandidati'].value;
+        const datum = values.elements['datum'].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../dodaj_zadatak.php", true); // Create call_function.php to call the function
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from call_function.php if needed
+                console.log(xhr.responseText);
+            }
+        };
+    
+        // Construct the data to send
+        const data = "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&kandidati=" + encodeURIComponent(kandidati) + "&datum=" + encodeURIComponent(datum);
+        xhr.send(data);
+
+        closeZadatakModal();
+    });
 }
