@@ -5,6 +5,7 @@
     $baza = new Baza();
     $baza->spojiDB();
     $res = $baza->selectDB("SELECT * FROM Poduzece");
+    $resModeratori = $baza->selectDB("SELECT * FROM Korisnik WHERE Korisnicka_uloga = 'moderator'");
 
 ?>
 

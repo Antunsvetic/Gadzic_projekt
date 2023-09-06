@@ -29,7 +29,11 @@
             <li><a href="o_autoru.html">Autor</a></li>
             <li><a href="dokumentacija.html">Dokumentacija</a></li>
             <li><a href="privatno.html">Privatno</a></li>
-            <li><button onclick="">Odjavi me</button></li>
+            <li>
+                <form id="logoutForm" action="../odjava.php" method="post">
+                    <button type="submit">Odjavi me</button>
+                </form>
+            </li>
         </ul>
     </nav>
 
