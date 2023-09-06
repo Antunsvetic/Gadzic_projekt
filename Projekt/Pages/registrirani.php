@@ -10,7 +10,8 @@
     $korisnicko_ime = $_SESSION["korisnik"];
     $user_id = $_SESSION['id'];
     $user_natjecaj_id = $_SESSION['natjecaj_id'];
-    $resZadatak = $baza->selectDB("SELECT * FROM Zadatak");
+    $encodedUsername = json_encode($korisnicko_ime);
+    $resZadatak = $baza->selectDB("SELECT * FROM Zadatak WHERE Zaduzen_korisnik = $encodedUsername");
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,29 @@
             <li><button onclick="">Odjavi me</button></li>
         </ul>
     </nav>
+
+    <div id="zadatak-opis-modal" class="popup-form">
+    <?php
+        if (isset($poruka_prijava)) {
+            echo "$poruka_prijava";
+            echo "<br>";
+        }
+
+        if (isset($greska_polje)) {
+            echo "$greska_polje";
+            echo "<br>";
+        }
+        ?>
+        <div class="form-container">
+            <span class="close" onclick="closeOpisModal()">&times;</span>
+            <h2>Prijava</h2>
+            <form id="zadatak-opis-form" action="" method="post">
+                <label for="opis">Opis:</label>
+                <input type="text" id="opis" name="opis">
+                <button type="submit" class="login-button" name="login-button">Uredi</button>
+            </form>
+        </div>
+    </div>
 
     <div class="container">
         <table class="data-table">
@@ -85,18 +109,26 @@
         <table class="data-table">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Naziv</th>
                     <th>Opis</th>
+                    <th>Zaduzen korisnik</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 if ($res->num_rows > 0) {
                     while ($row = $resZadatak->fetch_assoc()) {
+                        $zadatak_id = $row["Zadatak_ID"];
+                        $status_zadatka = $row["Status_zadatka"];
                         echo "<tr>";
+                        echo "<td>" . $row["Zadatak_ID"] . "</td>";
                         echo "<td>" . $row["Naziv"] . "</td>";
                         echo "<td>" . $row["Opis"] . "</td>";
-                        //echo "<td><button onclick='editNatjecaj($natjecaj_id)'>Uredi natjecaj</button></td>";
+                        echo "<td>" . $row["Zaduzen_korisnik"] . "</td>";
+                        echo ($status_zadatka == 1) ? "<td>Otvoren</td>" : "<td>Zatvoren</td>";
+                        echo ($status_zadatka == 1) ? "<td><button onclick='dodajOpisUZadatak($zadatak_id)'>Dodaj opis</button></td>" : "";
                         echo "</tr>";
                     }
                 } else {

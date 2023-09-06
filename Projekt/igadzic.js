@@ -132,3 +132,122 @@ function kreirajZadatak() {
         closeZadatakModal();
     });
 }
+
+function dodajOpisUZadatak(zadatak_id) {
+    var zadatakModal = document.getElementById("zadatak-opis-modal");
+    zadatakModal.style.display = "block";
+
+
+    const zadatakForm = document.getElementById("zadatak-opis-form");
+    zadatakForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        const values = e.target;
+        const opis = values.elements['opis'].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../dodaj_opis.php", true); // Create call_function.php to call the function
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from call_function.php if needed
+                console.log(xhr.responseText);
+            }
+        };
+    
+        // Construct the data to send
+        const data = "&zadatak_id=" + encodeURIComponent(zadatak_id) + "&opis=" + encodeURIComponent(opis);
+        xhr.send(data);
+
+        closeOpisModal();
+    });
+}
+
+function closeOpisModal() {
+    var natjecajModal = document.getElementById("zadatak-opis-modal");
+    natjecajModal.style.display = "none";
+}
+
+function closeDodajPoduzece() {
+    var natjecajModal = document.getElementById("poduzece-modal");
+    natjecajModal.style.display = "none";
+}
+
+function dodajPoduzece() {
+    var zadatakModal = document.getElementById("poduzece-modal");
+    zadatakModal.style.display = "block";
+
+    const zadatakForm = document.getElementById("poduzece-form");
+    zadatakForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        const values = e.target;
+        const naziv = values.elements['naziv'].value;
+        const opis = values.elements['opis'].value;
+        const radno_vrijeme = values.elements['radno_vrijeme'].value;
+        const broj_zaposlenih = values.elements['broj_zaposlenih'].value;
+        const moderatori = values.elements['moderatori'].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../dodaj_poduzece.php", true); // Create call_function.php to call the function
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from call_function.php if needed
+                console.log(xhr.responseText);
+            }
+        };
+    
+        // Construct the data to send
+        const data = "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&radno_vrijeme=" + encodeURIComponent(radno_vrijeme)
+         + "&broj_zaposlenih=" + encodeURIComponent(broj_zaposlenih) + "&moderatori=" + encodeURIComponent(moderatori);
+        xhr.send(data);
+
+        closeDodajPoduzece();
+    });
+}
+
+function editPoduzece(poduzece_id) {
+    var zadatakModal = document.getElementById("poduzece-modal");
+    zadatakModal.style.display = "block";
+
+    const zadatakForm = document.getElementById("poduzece-form");
+    zadatakForm.addEventListener("submit", function(e){
+        e.preventDefault();
+        const values = e.target;
+        const naziv = values.elements['naziv'].value;
+        const opis = values.elements['opis'].value;
+        const radno_vrijeme = values.elements['radno_vrijeme'].value;
+        const broj_zaposlenih = values.elements['broj_zaposlenih'].value;
+        const moderatori = values.elements['moderatori'].value;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../edit_poduzece.php", true); // Create call_function.php to call the function
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from call_function.php if needed
+                console.log(xhr.responseText);
+            }
+        };
+    
+        // Construct the data to send
+        const data = "&id=" + encodeURIComponent(poduzece_id) + "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&radno_vrijeme=" + encodeURIComponent(radno_vrijeme)
+         + "&broj_zaposlenih=" + encodeURIComponent(broj_zaposlenih) + "&moderatori=" + encodeURIComponent(moderatori);
+        xhr.send(data);
+
+        closeDodajPoduzece();
+    });
+}
+
+function odjaviMe() {
+    // Make an HTTP request to session.php to trigger obrisiSesiju()
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "../session.class.php?logout=true", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+            // Redirect to another page after logout if needed
+            window.location.href = "../index.php";
+        }
+    };
+    xhr.send();
+}

@@ -1,6 +1,6 @@
 <?php
 
-include "./sesija.class.php";
+include "../sesija.class.php";
 
 if(isset($_SESSION)){
     Sesija::obrisiSesiju();
@@ -9,6 +9,6 @@ if(isset($_SESSION)){
 
 }
 
-header("Location: ./obrasci/autentikacija.php");
+header("Location: ../index.php");
 
 ?>
