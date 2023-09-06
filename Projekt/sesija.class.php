@@ -35,6 +35,7 @@ class Sesija {
     const KOSARICA = "kosarica";
     const SESSION_NAME = "prijava_sesija";
     CONST ID = "id";
+    CONST NATJECAJ_ID = "natjecaj_id";
 
     static function kreirajSesiju() {
          if (session_id() == "") {
@@ -43,11 +44,12 @@ class Sesija {
         }
     }
 
-    static function kreirajKorisnika($id, $korisnik, $uloga = 2) { // prosljedujemo ulogu korisnika
+    static function kreirajKorisnika($id, $korisnik, $natjecaj_id, $uloga = 2) { // prosljedujemo ulogu korisnika
         self::kreirajSesiju();
         $_SESSION[self::KORISNIK] = $korisnik;
         $_SESSION[self::ULOGA] = $uloga;
         $_SESSION[self::ID] = $id;
+        $_SESSION[self::NATJECAJ_ID] = $natjecaj_id; //ovo treba jos provjerit
     }
 
     static function kreirajKosaricu($kosarica) {
@@ -86,6 +88,6 @@ class Sesija {
             session_unset();
             session_destroy();
         }
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
 }

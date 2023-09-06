@@ -55,6 +55,7 @@ class Baza {
             }
         }
         
+        session_reset();
         return $rezultat;
     }
 

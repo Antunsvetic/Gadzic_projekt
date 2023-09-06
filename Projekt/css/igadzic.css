@@ -139,7 +139,7 @@ form > * {
 
 /* Dizajn registracija */ 
 
-#registrationForm {
+#registrationForm, #edit-natjecaj {
     display: none;
 }
 

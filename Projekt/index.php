@@ -27,6 +27,7 @@ if(isset($_GET['login-button'])){
             $sifra=$red['Lozinka_Sha256'];
             $uloga=$red['Korisnicka_uloga'];
             $id = $red['Korisnik_ID'];
+            $natjecaj_id = $red['Prijavljen_natjecaj'];
         }
 
         if($nova_lozinka != $sifra) {
@@ -38,7 +39,7 @@ if(isset($_GET['login-button'])){
 
     if(empty($greska_polje) && empty($poruka_prijava)){
         Sesija::kreirajSesiju();
-        Sesija::kreirajKorisnika($id, $korisnicko_ime, $uloga);
+        Sesija::kreirajKorisnika($id, $korisnicko_ime, $natjecaj_id, $uloga);
         if($uloga == 0) {
             header('Location: /Pages/admin.php');
         } elseif ($uloga == 1) {
@@ -154,7 +155,6 @@ if (isset($_POST['submit_btn'])) {
             <li><a href="o_autoru.html">Autor</a></li>
             <li><a href="dokumentacija.html">Dokumentacija</a></li>
             <li><a href="privatno.html">Privatno</a></li>
-
         </ul>
     </nav>
 
