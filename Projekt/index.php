@@ -28,10 +28,15 @@ if(isset($_GET['login-button'])){
             $uloga=$red['Korisnicka_uloga'];
             $id = $red['Korisnik_ID'];
             $natjecaj_id = $red['Prijavljen_natjecaj'];
+            $blokiran = $red['Blokiran'];
         }
 
         if($nova_lozinka != $sifra) {
-            $poruka_prijava.="Lozinka za username '" . $korime . "' nije ispravna.";
+            $poruka_prijava ="Lozinka za username '" . $korime . "' nije ispravna.";
+        }
+
+        if($blokiran == 1) {
+            $poruka_prijava = "Korisnik '" . $korime . "' je trenutno blokiran. Javite se administratoru";
         }
     } else {
         $greska_polje="Ne postoji korisnik sa username '" . $korime . "'.";
@@ -159,14 +164,6 @@ if (isset($_POST['submit_btn'])) {
     </nav>
 
     <div class="container">
-        <div class="buttons">
-            <button class="login-button" onclick="openLoginForm()">Prijavi se</button>
-            <button class="register-button" onclick="openRegistrationForm()">Registriraj se</button>
-            <button class="guest-button" onclick="relocateGuest()">Gost</button>
-        </div>
-    </div>
-
-    <div id="loginForm" class="popup-form">
     <?php
         if (isset($poruka_prijava)) {
             echo "$poruka_prijava";
@@ -177,7 +174,16 @@ if (isset($_POST['submit_btn'])) {
             echo "$greska_polje";
             echo "<br>";
         }
-        ?>
+    ?>
+        <div class="buttons">
+            <button class="login-button" onclick="openLoginForm()">Prijavi se</button>
+            <button class="register-button" onclick="openRegistrationForm()">Registriraj se</button>
+            <button class="guest-button" onclick="relocateGuest()">Gost</button>
+        </div>
+    </div>
+
+    <div id="loginForm" class="popup-form">
+    
         <div class="form-container">
             <span class="close" onclick="closeLoginForm()">&times;</span>
             <h2>Prijava</h2>

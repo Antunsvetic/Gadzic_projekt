@@ -32,10 +32,6 @@
         </ul>
     </nav>
 
-    <div>
-         <button onclick="dodajPoduzece()">Uredi korisnika</button>
-    </div>
-
     <div id="edit-korisnik-modal" class="popup-form">
         <div class="form-container">
             <span class="close" onclick="closeEditKorisnik()">&times;</span>
