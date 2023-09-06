@@ -45,15 +45,15 @@
         ?>
         <div class="form-container">
             <span class="close" onclick="closeZadatakModal()">&times;</span>
-            <h2>Prijava</h2>
+            <h2>Kreiraj zadatak</h2>
             <form id="zadatak-form" action="" method="post">
-                <label for="naziv">Naziv natjecaja</label>
+                <label for="naziv">Naziv zadatka</label>
                 <input type="text" id="naziv" name="naziv">
-                <label for="opis">Opis:</label>
+                <label for="opis">Opis zadatka:</label>
                 <input type="text" id="opis" name="opis">
                 <label for="datum">Datum:</label>
                 <input type="date" id="datum" name="datum">
-                <label for="kandidati">Kandidati:</label>
+                <label for="kandidati">Kandidat:</label>
                 <input type="text" id="kandidati" name="kandidati">
                 <button type="submit" class="login-button" name="login-button">Prijavi se</button>
             </form>
@@ -74,9 +74,9 @@
         ?>
         <div class="form-container">
             <span class="close" onclick="closeEditNatjecaj()">&times;</span>
-            <h2>Prijava</h2>
+            <h2>Uredi natječaj</h2>
             <form id="natjecaj-form" action="" method="post">
-                <label for="naziv">Naziv natjecaja</label>
+                <label for="naziv">Naziv natječaja</label>
                 <input type="text" id="naziv" name="naziv">
                 <label for="opis">Opis:</label>
                 <input type="text" id="opis" name="opis">
@@ -97,6 +97,7 @@
                     <th>Pocetak</th>
                     <th>Kraj</th>
                     <th>Kandidati</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -152,10 +153,9 @@
                 ?>
             </tbody>
         </table>
-    </div>
-
-    <div>
-         <button onclick="kreirajZadatak()">Kreiraj zadatak</button>
+        <div class="buttons">
+         <button class="edit-button" onclick="kreirajZadatak()">Kreiraj zadatak</button>
+        </div>
     </div>
 
     <script src="../igadzic.js"></script>

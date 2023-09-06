@@ -23,11 +23,13 @@ h1 {
 .buttons {
     display: flex;
     gap: 20px;
+    padding: 10px;
 }
 /* Style the buttons */
 .login-button,
 .register-button,
-.guest-button {
+.guest-button,
+.edit-button {
     padding: 10px 20px;
     font-size: 1rem;
     background-color: red;
@@ -39,7 +41,8 @@ h1 {
 
 .login-button:hover,
 .register-button:hover,
-.guest-button:hover {
+.guest-button:hover,
+.edit-button {
     background-color: darkred;
 }
 
