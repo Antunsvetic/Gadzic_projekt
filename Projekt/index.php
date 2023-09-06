@@ -162,7 +162,7 @@ if (isset($_POST['submit_btn'])) {
         <div class="buttons">
             <button class="login-button" onclick="openLoginForm()">Prijavi se</button>
             <button class="register-button" onclick="openRegistrationForm()">Registriraj se</button>
-            <button class="register-button" onclick="relocateGuest()">Gost</button>
+            <button class="guest-button" onclick="relocateGuest()">Gost</button>
         </div>
     </div>
 

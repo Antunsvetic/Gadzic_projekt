@@ -38,19 +38,9 @@ h1 {
 }
 
 .login-button:hover,
-.register-button:hover {
+.register-button:hover,
+.guest-button:hover {
     background-color: darkred;
-}
-
-/* Style the "Forgot your password" link */
-.forgot-password a {
-    text-decoration: none;
-    color: red;
-    transition: color 0.3s;
-}
-
-.forgot-password a:hover {
-    color: darkred;
 }
 
 a {
@@ -262,6 +252,8 @@ body, h1 {
 .data-table tbody tr.no-data td {
     text-align: center;
 }
+
+/* Dokumentacija uredivanje*/
 
 
 
