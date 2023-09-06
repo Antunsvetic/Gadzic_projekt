@@ -10,6 +10,7 @@
     $korisnicko_ime = $_SESSION["korisnik"];
     $user_id = $_SESSION['id'];
     $user_natjecaj_id = $_SESSION['natjecaj_id'];
+    $resZadatak = $baza->selectDB("SELECT * FROM Zadatak");
 ?>
 
 <!DOCTYPE html>
@@ -73,6 +74,29 @@
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kandidati"] . "</td>";
                         echo "$poruka";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='2'>Nema aktivnih natjecaja!</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Opis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($res->num_rows > 0) {
+                    while ($row = $resZadatak->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["Naziv"] . "</td>";
+                        echo "<td>" . $row["Opis"] . "</td>";
+                        //echo "<td><button onclick='editNatjecaj($natjecaj_id)'>Uredi natjecaj</button></td>";
                         echo "</tr>";
                     }
                 } else {

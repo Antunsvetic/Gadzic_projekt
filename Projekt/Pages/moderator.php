@@ -27,10 +27,6 @@
         </ul>
     </nav>
 
-    <div>
-         <button onclick="kreirajZadatak()">Kreiraj zadatak</button>
-    </div>
-
     <div id="zadatak-modal" class="popup-form">
     <?php
         if (isset($poruka_prijava)) {
@@ -152,6 +148,10 @@
                 ?>
             </tbody>
         </table>
+    </div>
+
+    <div>
+         <button onclick="kreirajZadatak()">Kreiraj zadatak</button>
     </div>
 
     <script src="../igadzic.js"></script>
