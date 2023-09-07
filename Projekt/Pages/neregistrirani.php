@@ -45,6 +45,12 @@
 
                 if ($res->num_rows > 0) {
                     while ($row = $res->fetch_assoc()) {
+                        $status = $row["Status"];
+                        if($status == 1) {
+                            $poruka = "Otvoren";
+                        } else {
+                            $poruka = "Zatvoren";
+                        }
                         echo "<tr>";
                         echo "<td>" . $row["Natjecaj_ID"] . "</td>";
                         echo "<td>" . $row["Naziv_natjecaja"] . "</td>";
@@ -52,6 +58,7 @@
                         echo "<td>" . $row["Pocetak_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kandidati"] . "</td>";
+                        echo "<td>" . $poruka . "</td>";
                         echo "</tr>";
                     }
                 } else {

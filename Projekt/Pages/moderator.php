@@ -82,6 +82,11 @@
                 <input type="text" id="opis" name="opis">
                 <label for="kandidati">Kandidati:</label>
                 <input type="text" id="kandidati" name="kandidati">
+                <label for="status">Status:</label>
+                <select name="status">
+                    <option value="1">Otvoren</option>
+                    <option value="0">Zatvoren</option>
+                </select>
                 <button type="submit" class="login-button" name="login-button">Uredi natječaj</button>
             </form>
         </div>
@@ -97,6 +102,7 @@
                     <th>Pocetak</th>
                     <th>Kraj</th>
                     <th>Kandidati</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -105,6 +111,12 @@
                 if ($res->num_rows > 0) {
                     while ($row = $res->fetch_assoc()) {
                         $natjecaj_id = $row["Natjecaj_ID"];
+                        $status = $row["Status"];
+                        if($status == 1) {
+                            $poruka = "Otvoren";
+                        } else {
+                            $poruka = "Zatvoren";
+                        }
                         echo "<tr>";
                         echo "<td>" . $row["Natjecaj_ID"] . "</td>";
                         echo "<td>" . $row["Naziv_natjecaja"] . "</td>";
@@ -112,6 +124,7 @@
                         echo "<td>" . $row["Pocetak_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kandidati"] . "</td>";
+                        echo "<td>" . $poruka . "</td>";
                         echo "<td><button onclick='editNatjecaj($natjecaj_id)'>Uredi natjecaj</button></td>";
                         echo "</tr>";
                     }
