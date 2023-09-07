@@ -82,12 +82,16 @@
                 <input type="text" id="opis" name="opis">
                 <label for="kandidati">Kandidati:</label>
                 <input type="text" id="kandidati" name="kandidati">
+                <label for="pocetak">Pocetak:</label>
+                <input type="date" id="pocetak" name="pocetak">
+                <label for="kraj">Kraj:</label>
+                <input type="date" id="kraj" name="kraj">
                 <label for="status">Status:</label>
                 <select name="status">
                     <option value="1">Otvoren</option>
                     <option value="0">Zatvoren</option>
                 </select>
-                <button type="submit" class="login-button" name="login-button">Uredi natječaj</button>
+                <button type="submit" class="login-button" name="login-button">Uredi</button>
             </form>
         </div>
     </div>
@@ -134,6 +138,9 @@
                 ?>
             </tbody>
         </table>
+        <div class="buttons">
+            <button class="edit-button" onclick="dodajNatjecaj()">Dodaj natjecaj</button>
+        </div>
 
         <table class="data-table">
             <thead>

@@ -55,8 +55,43 @@ function triggerUpdate(param1, param2, param3, param4) {
 }
 
 function editNatjecaj(natjecaj_id) {
-    console.log("IM HERE", natjecaj_id)
     openEditNatjecaj(natjecaj_id);
+}
+
+function dodajNatjecaj() {
+    console.log("Bla")
+    var natjecajModal = document.getElementById("natjecaj-modal");
+    natjecajModal.style.display = "block";
+
+    const natjecajForm = document.getElementById("natjecaj-form");
+    natjecajForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const values = e.target;
+        const naziv = values.elements['naziv'].value;
+        const opis = values.elements['opis'].value;
+        const kandidati = values.elements['kandidati'].value;
+        const pocetak = values.elements['pocetak'].value;
+        const kraj = values.elements['kraj'].value;
+        const status = values.elements['status'].value;
+
+        //Send data and trigger query
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../dodaj_natjecaj.php", true); // Create call_function.php to call the function
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Handle the response from call_function.php if needed
+                console.log(xhr.responseText);
+            }
+        };
+    
+        // Construct the data to send
+        const data = "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&kandidati=" + encodeURIComponent(kandidati)
+            + "&status=" + encodeURIComponent(status) + "&pocetak=" + encodeURIComponent(pocetak) + "&kraj=" + encodeURIComponent(kraj);
+        xhr.send(data);
+
+        closeEditNatjecaj();
+    });
 }
 
 function openEditNatjecaj(natjecaj_id) {

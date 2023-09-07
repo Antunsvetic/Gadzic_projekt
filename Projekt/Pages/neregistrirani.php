@@ -23,7 +23,6 @@
             <li><a href="o_autoru.html">Autor</a></li>
             <li><a href="dokumentacija.html">Dokumentacija</a></li>
             <li><a href="privatno.html">Privatno</a></li>
-
         </ul>
     </nav>
 
