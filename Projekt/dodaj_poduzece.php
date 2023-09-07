@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $broj_zaposlenih = $_POST["broj_zaposlenih"];
     $moderatori = $_POST["moderatori"];
 
-    $updatePoduzeca = "INSERT INTO `Poduzece` (`Naziv`, `Opis`, `Radno_vrijeme`, `Zaposlenih`, `Moderatori`) VALUES ('{$naziv}','{$opis}','{$radno_vrijeme}','{$broj_zaposlenih}', '{$moderatori}')";
+    $updatePoduzeca = "INSERT INTO `poduzece` (`Naziv`, `Opis`, `Radno_vrijeme`, `Zaposlenih`, `Moderatori`) VALUES ('{$naziv}','{$opis}','{$radno_vrijeme}','{$broj_zaposlenih}', '{$moderatori}')";
 
     // Call the updateDatabase function with the parameters
     $rezultat = $baza->updateDB($updatePoduzeca);

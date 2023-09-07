@@ -33,7 +33,7 @@ function closeRegistrationForm() {
 }
 
 function relocateGuest() {
-    document.location.href = "/Pages/neregistrirani.php";
+    document.location.href = "Pages/neregistrirani.php";
 }
 
 

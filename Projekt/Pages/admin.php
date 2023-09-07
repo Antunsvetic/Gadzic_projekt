@@ -4,8 +4,8 @@
 
     $baza = new Baza();
     $baza->spojiDB();
-    $res = $baza->selectDB("SELECT * FROM Poduzece");
-    $resModeratori = $baza->selectDB("SELECT * FROM Korisnik");
+    $res = $baza->selectDB("SELECT * FROM poduzece");
+    $resModeratori = $baza->selectDB("SELECT * FROM korisnik");
 
 ?>
 

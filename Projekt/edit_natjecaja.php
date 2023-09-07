@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $kandidati = $_POST["kandidati"];
     $status = $_POST["status"];
 
-    $updateNatjecaji = "UPDATE Natjecaj SET Naziv_natjecaja = '$naziv', Opis_natjecaja = '$opis', Kandidati = '$kandidati', Status = '$status' WHERE Natjecaj_ID = $natjecaj_id";
+    $updateNatjecaji = "UPDATE natjecaj SET Naziv_natjecaja = '$naziv', Opis_natjecaja = '$opis', Kandidati = '$kandidati', Status = '$status' WHERE Natjecaj_ID = $natjecaj_id";
 
     // Call the updateDatabase function with the parameters
     $rezultat = $baza->updateDB($updateNatjecaji);

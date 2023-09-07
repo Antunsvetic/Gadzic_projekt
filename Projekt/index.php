@@ -46,11 +46,11 @@ if(isset($_GET['login-button'])){
         Sesija::kreirajSesiju();
         Sesija::kreirajKorisnika($id, $korisnicko_ime, $natjecaj_id, $uloga);
         if($uloga == 0) {
-            header('Location: /Pages/admin.php');
+            header('Location: Pages/admin.php');
         } elseif ($uloga == 1) {
-            header('Location: /Pages/moderator.php');
+            header('Location: Pages/moderator.php');
         } elseif ($uloga == 2) {
-            header('Location: /Pages/registrirani.php');
+            header('Location: Pages/registrirani.php');
         }
     }
 }

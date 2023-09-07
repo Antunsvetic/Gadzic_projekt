@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $uloga = $_POST["uloga"];
     $blokiran = $_POST["blokiran"];
 
-    $updateKorisnika = "UPDATE Korisnik SET Ime = '$ime', Prezime = '$prezime', Email = '$email', Korisnicko_ime = '$username', Korisnicka_uloga = '$uloga', Blokiran = '$blokiran' WHERE Korisnik_ID = $id";
+    $updateKorisnika = "UPDATE korisnik SET Ime = '$ime', Prezime = '$prezime', Email = '$email', Korisnicko_ime = '$username', Korisnicka_uloga = '$uloga', Blokiran = '$blokiran' WHERE Korisnik_ID = $id";
 
     // Call the updateDatabase function with the parameters
     $rezultat = $baza->updateDB($updateKorisnika);
