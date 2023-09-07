@@ -55,7 +55,7 @@
                 <input type="date" id="datum" name="datum">
                 <label for="kandidati">Kandidat:</label>
                 <input type="text" id="kandidati" name="kandidati">
-                <button type="submit" class="login-button" name="login-button">Prijavi se</button>
+                <button type="submit" class="login-button" name="login-button">Kreiraj zadatak</button>
             </form>
         </div>
     </div>
@@ -87,7 +87,7 @@
                     <option value="1">Otvoren</option>
                     <option value="0">Zatvoren</option>
                 </select>
-                <button type="submit" class="login-button" name="login-button">Prijavi se</button>
+                <button type="submit" class="login-button" name="login-button">Uredi natječaj</button>
             </form>
         </div>
     </div>

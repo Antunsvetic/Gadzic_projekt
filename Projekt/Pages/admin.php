@@ -35,7 +35,7 @@
     <div id="edit-korisnik-modal" class="popup-form">
         <div class="form-container">
             <span class="close" onclick="closeEditKorisnik()">&times;</span>
-            <h2>Registracija</h2>
+            <h2>Uredi korisnika</h2>
             <form id="edit-korisnik-form" action="" method="post">
                 <label for="ime">Ime:</label>
                 <input type="text" id="ime" name="ime">
@@ -57,7 +57,7 @@
                     <option value="1">Da</option>
                     <option value="0">Ne</option>
                 </select>
-                <button type="submit" id="registriraj" name="submit_btn" value="registriraj" class="register-button">Registracija</button>
+                <button type="submit" id="registriraj" name="submit_btn" value="registriraj" class="register-button">Uredi</button>
             </form>
         </div>
     </div>
@@ -89,7 +89,7 @@
                 <input type="text" id="broj_zaposlenih" name="broj_zaposlenih">
                 <label for="moderatori">Moderatori:</label>
                 <input type="text" id="moderatori" name="moderatori">
-                <button type="submit" class="login-button" name="login-button">Kreiraj</button>
+                <button type="submit" class="login-button" name="login-button">Dodaj poduzeće</button>
             </form>
         </div>
     </div>
@@ -128,8 +128,11 @@
                 ?>
             </tbody>
         </table>
+        <div class="buttons">
+            <button class="edit-button" onclick="dodajPoduzece()">Kreiraj poduzece</button>
+        </div>
 
-        <h2 style="color: white; background: blue;">Korisnici</h2>
+        <h2 style="color: white;">Korisnici</h2>
         <table class="data-table">
             <thead>
                 <tr>
@@ -165,12 +168,8 @@
                 ?>
             </tbody>
         </table>
-                    ?>
                 </tbody>
             </table>
-            <div class="buttons">
-            <button class="edit-button" onclick="dodajPoduzece()">Kreiraj poduzece</button>
-            </div>
         </div>
     </div>
 

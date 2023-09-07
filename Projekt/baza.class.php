@@ -4,8 +4,8 @@ class Baza {
 
     const server = "127.0.0.1";
     const korisnik = "root";
-    const lozinka = "toor";
-    const baza = "WebDiP2022x007";
+    const lozinka = "";
+    const baza = "proba";
 
     private $veza = null;
     private $greska = '';
