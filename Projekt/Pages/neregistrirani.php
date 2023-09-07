@@ -41,11 +41,18 @@
                 // Loop through the retrieved data and display it in the table
                 if ($res->num_rows > 0) {
                     while ($row = $res->fetch_assoc()) {
+                        $status = $row["Status"];
+                        if($status == 1) {
+                            $poruka = "Otvoren";
+                        } else {
+                            $poruka = "Zatvoren";
+                        }
                         echo "<tr>";
                         echo "<td>" . $row["Naziv_natjecaja"] . "</td>";
                         echo "<td>" . $row["Opis_natjecaja"] . "</td>";
                         echo "<td>" . $row["Pocetak_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
+                        echo "<td>" . $poruka . "</td>";
                         // Add more table cells for additional columns as needed
                         echo "</tr>";
                     }

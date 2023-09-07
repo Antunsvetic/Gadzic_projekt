@@ -70,6 +70,7 @@ function openEditNatjecaj(natjecaj_id) {
         const naziv = values.elements['naziv'].value;
         const opis = values.elements['opis'].value;
         const kandidati = values.elements['kandidati'].value;
+        const status = values.elements['status'].value;
 
         //Send data and trigger query
         const xhr = new XMLHttpRequest();
@@ -83,7 +84,8 @@ function openEditNatjecaj(natjecaj_id) {
         };
     
         // Construct the data to send
-        const data = "natjecaj_id=" + encodeURIComponent(natjecaj_id) + "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&kandidati=" + encodeURIComponent(kandidati);
+        const data = "natjecaj_id=" + encodeURIComponent(natjecaj_id) + "&naziv=" + encodeURIComponent(naziv) + "&opis=" + encodeURIComponent(opis) + "&kandidati=" + encodeURIComponent(kandidati)
+            + "&status=" + encodeURIComponent(status);
         xhr.send(data);
 
         closeEditNatjecaj();
