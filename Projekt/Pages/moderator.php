@@ -55,7 +55,7 @@
                 <input type="date" id="datum" name="datum">
                 <label for="kandidati">Kandidat:</label>
                 <input type="text" id="kandidati" name="kandidati">
-                <button type="submit" class="login-button" name="login-button">Prijavi se</button>
+                <button type="submit" class="login-button" name="login-button">Kreiraj zadatak</button>
             </form>
         </div>
     </div>
@@ -82,7 +82,7 @@
                 <input type="text" id="opis" name="opis">
                 <label for="kandidati">Kandidati:</label>
                 <input type="text" id="kandidati" name="kandidati">
-                <button type="submit" class="login-button" name="login-button">Prijavi se</button>
+                <button type="submit" class="login-button" name="login-button">Uredi natječaj</button>
             </form>
         </div>
     </div>
@@ -144,7 +144,6 @@
                         echo "<td>" . $row["Opis"] . "</td>";
                         echo "<td>" . $row["Datum"] . "</td>";
                         echo "<td>" . $row["Ocjena"] . "</td>";
-                        //echo "<td><button onclick='editNatjecaj($natjecaj_id)'>Uredi natjecaj</button></td>";
                         echo "</tr>";
                     }
                 } else {
