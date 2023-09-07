@@ -30,15 +30,18 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Column1</th>
-                    <th>Column2</th>
-                    <!-- Add more table headers for your columns -->
+                    <th>ID</th>
+                    <th>Naziv</th>
+                    <th>Opis</th>
+                    <th>Pocetak</th>
+                    <th>Kraj</th>
+                    <th>Kandidati</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                // Loop through the retrieved data and display it in the table
+
                 if ($res->num_rows > 0) {
                     while ($row = $res->fetch_assoc()) {
                         $status = $row["Status"];
@@ -48,12 +51,13 @@
                             $poruka = "Zatvoren";
                         }
                         echo "<tr>";
+                        echo "<td>" . $row["Natjecaj_ID"] . "</td>";
                         echo "<td>" . $row["Naziv_natjecaja"] . "</td>";
                         echo "<td>" . $row["Opis_natjecaja"] . "</td>";
                         echo "<td>" . $row["Pocetak_natjecaja"] . "</td>";
                         echo "<td>" . $row["Kraj_natjecaja"] . "</td>";
+                        echo "<td>" . $row["Kandidati"] . "</td>";
                         echo "<td>" . $poruka . "</td>";
-                        // Add more table cells for additional columns as needed
                         echo "</tr>";
                     }
                 } else {
